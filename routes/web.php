@@ -20,11 +20,14 @@ use Illuminate\Support\Facades\Route;
 
 
 use App\Http\Controllers\OrderController;
+use App\Models\Product;
 
-// Frontend form ke liye route
 Route::get('/place-order', function () {
-    return view('place_order');
+    $product = Product::first();
+    return view('place_order', compact('product'));
 });
 
-// Form submit hone par order place karne ka route
 Route::post('/place-order', [OrderController::class, 'place'])->name('place.order');
+
+
+
